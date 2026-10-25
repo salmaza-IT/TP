@@ -22,16 +22,16 @@
 
 | N° | Instruction(s) | Votre réponse |
 | :---: | :--- | :--- |
-| **1** | `print(10 / 4);` | KSJFKSJFKS | 
-| **2** | `print(10 ~/ 4);` | <!-- Écrire la réponse ici --> |
-| **3** | `print(10 % 4);` | <!-- Écrire la réponse ici --> |
-| **4** | `print('Dart' + ' ' + 'MST');` | <!-- Écrire la réponse ici --> |
-| **5** | `print('2' + '3');` | <!-- Écrire la réponse ici --> |
-| **6** | `print(2 + 3 * 4 - 1);` | <!-- Écrire la réponse ici --> |
-| **7** | `int x = 5; x += 3; x *= 2; print(x);` | <!-- Écrire la réponse ici --> |
-| **8** | `print(5 > 3 && 2 > 4);` | <!-- Écrire la réponse ici --> |
-| **9** | `print(!(5 == 5) \|\| 3 < 4);` | <!-- Écrire la réponse ici --> |
-| **10**| `String? s; print(s ?? 'vide');` | <!-- Écrire la réponse ici --> |
+| **1** | `print(10 / 4);` |2.5 | 
+| **2** | `print(10 ~/ 4);` | 2|
+| **3** | `print(10 % 4);` |2|
+| **4** | `print('Dart' + ' ' + 'MST');` | Dart MST |
+| **5** | `print('2' + '3');` |23 |
+| **6** | `print(2 + 3 * 4 - 1);` |13|
+| **7** | `int x = 5; x += 3; x *= 2; print(x);` |16|
+| **8** | `print(5 > 3 && 2 > 4);` | False |
+| **9** | `print(!(5 == 5) \|\| 3 < 4);` | True |
+| **10**| `String? s; print(s ?? 'vide');` | vide |
 
 ---
 
@@ -40,10 +40,10 @@
 
 | Valeur / Expression | Votre réponse | Valeur / Expression | Votre réponse |
 | :--- | :--- | :--- | :--- |
-| `42` | <!-- Type --> | `'42'` | <!-- Type --> |
-| `3.14` | <!-- Type --> | `10 / 2` | <!-- Type --> |
-| `true` | <!-- Type --> | `10 ~/ 2` | <!-- Type --> |
-| `"Settat"` | <!-- Type --> | `7 > 3` | <!-- Type --> |
+| `42` | int | `'42'` |string |
+| `3.14` | double | `10 / 2` | double |
+| `true` | bool | `10 ~/ 2` | int |
+| `"Settat"` | string | `7 > 3` | bool|
 
 ---
 
@@ -65,12 +65,12 @@
 
 | Ligne | Type d'erreur | Problème identifié | Correction proposée |
 | :---: | :--- | :--- | :--- |
-| **2** | <!-- Syntaxe/Type/Logique --> | <!-- Explication --> | `int age = 20;` |
-| **3** | <!-- Syntaxe/Type/Logique --> | <!-- Explication --> | <!-- Correction --> |
-| **4** | <!-- Syntaxe/Type/Logique --> | <!-- Explication --> | <!-- Correction --> |
-| **5** | <!-- Syntaxe/Type/Logique --> | <!-- Explication --> | <!-- Correction --> |
-| **6** | <!-- Syntaxe/Type/Logique --> | <!-- Explication --> | <!-- Correction --> |
-| **7** | <!-- Syntaxe/Type/Logique --> | <!-- Explication --> | <!-- Correction --> |
+| **2** | Type | 'ving'est un texte pas un entier | `int age = 20;` |
+| **3** |syntaxe | point décimal, pas virgule |double prix = 12.5; |
+| **4** | syntaxe |mêmes guillemets au début et à la fin|String nom = 'Sara';|
+| **5** | syntaxe | point-virgule manquant | const tva = 0.2; |
+| **6** | logique |on ne peut pas modifier une constante const | supprimer tva=0.25; |
+| **7** | type | on ne peut pas additionner une String et un int| print('Age : $age'); |
 
 ---
 
@@ -97,24 +97,24 @@ String mention(double m) {
 
 | Appel | `mention(17)` | `mention(13.99)` | `mention(10)` | `mention(9.5)` |
 | :--- | :---: | :---: | :---: | :---: |
-| **Résultat** | <!-- Rep1 --> | <!-- Rep2 --> | <!-- Rep3 --> | <!-- Rep4 --> |
+| **Résultat** | Trés bien| Assez bien| Passable| Insuffisant |
 
 #### b) Expressions booléennes
 *Écrivez en Dart la condition qui vaut `true` lorsque :*
 
 1. `a` est compris entre 10 et 20 (bornes incluses) :
 ```dart
-// Votre réponse ici
+a >= 10 && a <= 20
 ```
 
 2. `n` est un entier **pair et strictement positif** :
 ```dart
-// Votre réponse ici
+n > 0 && n % 2 == 0
 ```
 
 3. `annee` est une année **bissextile** (divisible par 4 mais pas par 100, ou divisible par 400) :
 ```dart
-// Votre réponse ici
+(annee % 4 == 0 && annee % 100 != 0) || annee % 400 == 0
 ```
 
 #### c) Réécriture
@@ -131,7 +131,7 @@ if (age >= 18) {
 
 **Votre réécriture :**
 ```dart
-// Votre code ici
+String statut = age >= 18 ? 'majeur' : 'mineur';
 ```
 
 ---
@@ -147,16 +147,25 @@ if (age >= 18) {
 
 1. **Version installée :**
    ```bash
-   # Collez le résultat de `dart --version` ici
+   # Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on "windows_x64"
    ```
 
 2. **Code de la carte de visite (`tp1_ex1.dart`) :**
 ```dart
-// Collez votre code Dart ici
+// void main() {
+  String nom = 'SalmaZAIM';
+  String filiere = 'SICRAT';
+  String ville = 'CASABLANCA';
+
+  print('=== Carte de visite ===');
+  print('Nom     : $nom');
+  print('Filière : $filiere');
+  print('Ville   : $ville');
+}
 ```
 
 3. **Remarque sur l'erreur de syntaxe testée :**
-   * <!-- Expliquez ce qu'a affiché le compilateur lors de l'oubli du ';' -->
+   * J’ai retiré le ; à la fin d’une instruction print pour provoquer une erreur dans mon projet. Le compilateur a signalé une erreur de syntaxe et a bloqué l’exécution. Une fois le (;) remis, le programme a fonctionné correctement.
 
 ---
 
@@ -164,19 +173,56 @@ if (age >= 18) {
 
 - **Code source (`tp1_ex2.dart`) :**
 ```dart
-// Collez votre code Dart ici
+ void main() {
+  const double tauxTva = 0.20;
+  double prixHT = 250;
+  double montantTva = prixHT * tauxTva;
+  double prixTTC = prixHT + montantTva;
+
+  print('Prix HT : ${prixHT.toStringAsFixed(2)} DH');
+  print('TVA (20%): ${montantTva.toStringAsFixed(2)} DH');
+  print('Prix TTC : ${prixTTC.toStringAsFixed(2)} DH');
+}
 ```
 
 - **Question :** Pourquoi utiliser `const` plutôt que `var` pour la TVA ?
-  > **Réponse :** <!-- Votre explication ici -->
-
+  > **Réponse :** On utilise `const` pour le taux de TVA parce que c'est une valeur fixe qu'on veut garder telle quelle dans tout le programme. `const` indique que cette valeur est constante et ne peut pas être modifiée, alors qu'avec `var` on pourrait lui réaffecter une autre valeur.
 ---
 
 ### TP 3 : Moyenne et mention (*15 min*)
 
 - **Code source (`tp1_ex3.dart`) :**
 ```dart
-// Collez votre code Dart ici
+import 'dart:io';
+
+void main() {
+  double moyenne;
+  stdout.write('Votre Nom : ');
+  String? nom = stdin.readLineSync();
+  stdout.write('Votre Note 1 :');
+  double note1 = double.parse(stdin.readLineSync()!);
+
+  stdout.write('Votre Note 2 :');
+  double note2 = double.parse(stdin.readLineSync()!);
+
+  moyenne = (note1 + note2) / 2;
+  String mention(double moyenne) {
+    if (moyenne >= 16) {
+      return 'Très bien';
+    } else if (moyenne >= 14) {
+      return 'Bien';
+    } else if (moyenne >= 12) {
+      return 'Assez bien';
+    } else if (moyenne >= 10) {
+      return 'Passable';
+    } else {
+      return 'Insuffisant';
+    }
+  }
+
+  print('$nom : ${moyenne.toStringAsFixed(2)} (${mention(moyenne)})');
+}
+
 ```
 
 ---
@@ -185,12 +231,68 @@ if (age >= 18) {
 
 - **Code source (`tp1_ex4.dart`) :**
 ```dart
-// Collez votre code Dart ici
+import 'dart:io';
+
+void main() {
+  stdout.write('entrer a  :');
+  double a = double.parse(stdin.readLineSync()!);
+
+  stdout.write('entrer b  :');
+  double b = double.parse(stdin.readLineSync()!);
+
+  stdout.write('Entrez un opérateur (+, -, *, /) : ');
+  String operateur = stdin.readLineSync()!;
+
+  switch (operateur) {
+    case '+':
+      print('Résultat : ${a + b}');
+      break;
+
+    case '-':
+      print('Résultat : ${a - b}');
+      break;
+
+    case '*':
+      print('Résultat : ${a * b}');
+      break;
+
+    case '/':
+      if (b != 0) {
+        print('Résultat : ${a / b}');
+      } else {
+        print('Erreur : division par zéro impossible.');
+      }
+      break;
+    default:
+      print('Erreur : opérateur inconnu.');
+  }
+}
+
 ```
 
 - **Bonus : Année bissextile (`tp1_ex4_bonus.dart`) :**
 ```dart
-// Collez votre code Dart ici
+import 'dart:io';
+
+void main() {
+  stdout.write('Année : ');
+  int? annee = int.tryParse(stdin.readLineSync() ?? '');
+
+  if (annee == null) {
+    print('Erreur : saisie invalide.');
+    return;
+  }
+
+  // Divisible par 4 mais pas par 100, ou divisible par 400
+  bool bissextile = (annee % 4 == 0 && annee % 100 != 0) || annee % 400 == 0;
+
+  if (bissextile) {
+    print('$annee est bissextile');
+  } else {
+    print('$annee n\'est pas bissextile');
+  }
+}
+
 ```
 
 ---
@@ -199,12 +301,53 @@ if (age >= 18) {
 
 - **Code source (`tp1_ex5.dart`) :**
 ```dart
-// Collez votre code Dart ici
+import 'dart:io';
+
+void main() {
+  // lire le nombre de secondes
+  stdout.write('Saisir le nombre de secondes : ');
+  int n = int.parse(stdin.readLineSync()!);
+
+  int heure = n ~/ 3600;          // calcul des heures
+  int minute = (n % 3600) ~/ 60;  // calcul des minutes restantes
+  int seconde = n % 60;           // calcul des secondes restantes
+
+  print('$n s = $heure h $minute min $seconde s');
+}
 ```
 
 - **Défi (Gestion des pluriels et unités nulles) :**
 ```dart
-// Collez le code du défi ici (optionnel)
+import 'dart:io';
+
+void main() {
+  stdout.write('Saisir le nombre de secondes : ');
+  int n = int.parse(stdin.readLineSync()!);
+
+  int heure = n ~/ 3600;
+  int minute = (n % 3600) ~/ 60;
+  int seconde = n % 60;
+
+  String resultat = '';
+
+  // ajouter les heures seulement si elles sont supérieures à zéro
+  if (heure > 0) {
+    resultat += '$heure ${heure == 1 ? 'heure' : 'heures'} ';
+  }
+
+  // ajouter les minutes seulement si elles sont supérieures à zéro
+  if (minute > 0) {
+    resultat += '$minute ${minute == 1 ? 'minute' : 'minutes'} ';
+  }
+
+  // ajouter les secondes si elles sont supérieures à zéro, ou si la durée vaut 0
+  if (seconde > 0 || n == 0) {
+    resultat += '$seconde ${seconde <= 1 ? 'seconde' : 'secondes'}';
+  }
+
+  print('$n s = ${resultat.trim()}');
+}
+
 ```
 
 ---
