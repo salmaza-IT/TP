@@ -16,22 +16,120 @@ Faculté des Sciences et Techniques de Settat — Université Hassan I
 ## Exercice 1 — Variables, types et expressions (6 points)
 
 1. Déclarer des variables représentant le nom d'un étudiant, son âge, sa moyenne et son statut d'admission. Choisir un type Dart adapté à chaque donnée.
+void main() {
+  String nom = 'Salma';
+  int age = 22;
+  double moyenne = 15;
+  bool admis = true;
+  List notes = [9, 10, 15, 16];
+  print("Nom : $nom");
+  print("Age : $age");
+  print("Moyenne : $moyenne");
+  print("Admis : $admis");
+}
 2. Déclarer une variable `prixHT` de type `double` et une variable `tva` de type `double`. Calculer le prix TTC avec une TVA de 20 %.
+void main() {
+  double prixHT = 100;
+  double tva = 0.2;
+  double prixTTC = prixHT + prixHT * tva;
+  print("Prix TTC = $prixTTC");
+}
+
 3. Déclarer une liste de cinq notes de type `double`. Afficher la première note, la dernière note et le nombre de notes.
+void main() {
+  List<double> notes = [12, 15.5, 9, 14, 17];
+  print(notes[0]);
+  print(notes.length);
+  print(notes[notes.length - 1]);
+}
+
 4. Expliquer la différence entre `var`, `final` et `const` à l'aide d'un petit exemple pour chacun.
 5. Écrire un exemple utilisant une variable nullable de type `String?` et l'opérateur `??` pour fournir une valeur par défaut.
 
 ## Exercice 2 — Conditions et énumérations (8 points)
 
 1. Écrire un programme qui lit ou définit un nombre entier et affiche s'il est positif, négatif ou nul.
-2. Écrire une fonction `String mention(double moyenne)` qui renvoie :
+void main() {
+  int n = -9;
+  if (n > 0) {
+    print('positive');
+  } else {
+    print('negative');
+  }
+}
+TEST:
+PS C:\Users\az\Desktop\TP2DEV> dart run exercice3.dart
+positive
+PS C:\Users\az\Desktop\TP2DEV> dart run exercice3.dart
+negative
+PS C:\Users\az\Desktop\TP2DEV> 
+
+3. Écrire une fonction `String mention(double moyenne)` qui renvoie :
    - `Très bien` si la moyenne est supérieure ou égale à 16 ;
    - `Bien` si elle est supérieure ou égale à 14 ;
    - `Assez bien` si elle est supérieure ou égale à 12 ;
    - `Passable` si elle est supérieure ou égale à 10 ;
    - `Insuffisant` dans les autres cas.
-3. Écrire une fonction `bool estBissextile(int annee)` qui indique si une année est bissextile. Une année est bissextile si elle est divisible par 400, ou si elle est divisible par 4 mais pas par 100.
-4. Définir `enum Niveau { licence, master, doctorat }`. À l'aide de `switch`, associer à chaque niveau une description (`Bac+3`, `Bac+5` ou `Bac+8`).
+String mention(double moyenne) {
+  if (moyenne >= 16) {
+    return 'Trés bien';
+  } else if (moyenne >= 14) {
+    return 'bien';
+  } else if (moyenne >= 12) {
+    return 'assez bien';
+  } else if (moyenne >= 10) {
+    return 'passable';
+  } else {
+    return 'insuffisant';
+  }
+}
+void main() {
+  print(mention(17));
+  print(mention(9));
+}
+EXECUTION:
+PS C:\Users\az\Desktop\TP2DEV> dart run exercice3.dart
+Trés bien
+passable
+PS C:\Users\az\Desktop\TP2DEV> dart run exercice3.dart
+Trés bien
+insuffisant
+PS C:\Users\az\Desktop\TP2DEV> 
+4. Écrire une fonction `bool estBissextile(int annee)` qui indique si une année est bissextile. Une année est bissextile si elle est divisible par 400, ou si elle est divisible par 4 mais pas par 100.
+void main() {
+  bool estBissextile(int annee) {
+    if (annee % 400 == 0) {
+      return true;
+    } else if (annee % 4 == 0 && annee % 100 != 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  print(estBissextile(2000));
+}
+EXECUTION:
+PS C:\Users\az\Desktop\TP2DEV> dart run exercice3.dart
+true
+PS C:\Users\az\Desktop\TP2DEV> 
+5. Définir `enum Niveau { licence, master, doctorat }`. À l'aide de `switch`, associer à chaque niveau une description (`Bac+3`, `Bac+5` ou `Bac+8`).
+void main (){
+int niveau = 3;
+switch (niveau){
+  case1:
+  print('licence');
+  break;
+  case2:
+  print('master');
+  break;
+  case3:
+  print('doctorat');
+  break;
+
+}
+
+}
 
 ## Exercice 3 — Boucles et calculs (8 points)
 
@@ -49,7 +147,17 @@ Faculté des Sciences et Techniques de Settat — Université Hassan I
    \[
    F = C \times 1{,}8 + 32
    \]
+celsiusVersFahrenheit(double c) {
+  return c * 1.8 + 32;
+}
 
+void main() {
+  print(celsiusVersFahrenheit(2));
+}
+EXECUTION:
+PS C:\Users\az\Desktop\TP2DEV> dart run exercice3.dart
+35.6
+PS C:\Users\az\Desktop\TP2DEV> 
 2. Écrire `int carre(int x)` sous forme classique avec `return`, puis sous forme fléchée avec `=>`.
 3. Écrire `void saluer(String nom)` qui affiche un message de bienvenue. Appeler cette fonction pour trois noms différents.
 4. Écrire `String creerMessage({required String nom, int age = 18})`. La fonction doit renvoyer un message contenant le nom et l'âge. Tester un appel avec l'âge par défaut et un appel avec un âge fourni.
@@ -66,11 +174,28 @@ final nombres = [3, 8, 12, 5, 20];
 ```
 
 1. Utiliser `where` pour obtenir les nombres supérieurs ou égaux à 10.
-2. Utiliser `map` pour obtenir une liste contenant le carré de chaque nombre.
-3. Combiner `where` et `map` pour obtenir les carrés des nombres strictement supérieurs à 5.
-4. Utiliser `reduce` pour calculer la somme de tous les nombres.
-5. Utiliser `any` pour vérifier si la liste contient un nombre supérieur à 18, puis `every` pour vérifier si tous les nombres sont positifs.
-6. Expliquer le rôle de `toList()` dans les expressions utilisant `where` ou `map`.
+void main() {
+  var finalnombers = [3, 8, 12, 5, 20];
+  var sup = finalnombers.where((n) => n >= 10).toList();
+  print(sup);
+EXECUTION:
+PS C:\Users\az\Desktop\TP2DEV> dart run exercice3.dart
+[12, 20]
+3. Utiliser `map` pour obtenir une liste contenant le carré de chaque nombre.
+ var carree = finalnombers.map((n) => n * n).toList();
+  print(carree);
+4. Combiner `where` et `map` pour obtenir les carrés des nombres strictement supérieurs à 5.
+5. Utiliser `reduce` pour calculer la somme de tous les nombres.
+  int somme = finalnombers.reduce((a, b) => a + b);
+  print(somme);
+}
+PS C:\Users\az\Desktop\TP2DEV> dart run exercice3.dart
+[12, 20]
+[9, 64, 144, 25, 400]
+48
+PS C:\Users\az\Desktop\TP2DEV> 
+6. Utiliser `any` pour vérifier si la liste contient un nombre supérieur à 18, puis `every` pour vérifier si tous les nombres sont positifs.
+7. Expliquer le rôle de `toList()` dans les expressions utilisant `where` ou `map`.
 
 ## Exercice 6 — Première classe et objets (8 points)
 
